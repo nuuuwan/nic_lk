@@ -11,6 +11,7 @@
     "serial_no": 514,
     "check_digit": 9,
     "new_nic_num": "198119105149",
+    "old_nic_num": "811915149V",
     "check_digit_computed": 9,
     "is_valid": true
   },
@@ -26,6 +27,7 @@
     "serial_no": 324,
     "check_digit": 8,
     "new_nic_num": "197714203248",
+    "old_nic_num": "771423248V",
     "check_digit_computed": 8,
     "is_valid": true
   },
@@ -41,6 +43,7 @@
     "serial_no": 202,
     "check_digit": 9,
     "new_nic_num": "200159302029",
+    "old_nic_num": "015932029V",
     "check_digit_computed": 9,
     "is_valid": true
   },
@@ -56,6 +59,7 @@
     "serial_no": 243,
     "check_digit": 5,
     "new_nic_num": "199062402435",
+    "old_nic_num": "906242435V",
     "check_digit_computed": 5,
     "is_valid": true
   },
@@ -71,6 +75,7 @@
     "serial_no": 152,
     "check_digit": 4,
     "new_nic_num": "198503401524",
+    "old_nic_num": "850341524V",
     "check_digit_computed": 4,
     "is_valid": true
   },
@@ -86,6 +91,7 @@
     "serial_no": 478,
     "check_digit": 3,
     "new_nic_num": "199234004783",
+    "old_nic_num": "923404783V",
     "check_digit_computed": 3,
     "is_valid": true
   },
@@ -101,6 +107,7 @@
     "serial_no": 471,
     "check_digit": 6,
     "new_nic_num": "199234004716",
+    "old_nic_num": "923404716V",
     "check_digit_computed": 6,
     "is_valid": true
   }
