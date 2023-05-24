@@ -14,6 +14,12 @@ class NIC:
     def __init__(self, nic_no: str):
         self.nic_no = nic_no
 
+    def __str__(self):
+        return self.nic_no
+
+    def __repr__(self):
+        return self.__str__()
+
     @staticmethod
     def new_nic_from_parts(
         year_of_birth: int,
@@ -145,7 +151,6 @@ class NIC:
             offset = 1
         else:
             offset = 2
-
         return int(
             (
                 datetime.datetime(self.year_of_birth, 1, 1)
@@ -197,9 +202,9 @@ class NIC:
 
     @cached_property
     def check_digit_computed(self) -> int:
-        W_LIST = [8, 4, 3, 2, 7, 6, 5, 8, 4, 3, 2, 0]
+        W_LIST = [8, 4, 3, 2, 7, 6, 5, 8, 4, 3, 2]
 
-        N = 12
+        N = 11
         i_list = [int(i) for i in self.new_nic_num]
 
         total_sum = sum(
