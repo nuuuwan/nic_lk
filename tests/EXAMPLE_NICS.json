@@ -1,35 +1,5 @@
 [
   {
-    "nic_no": "821850541V",
-    "nic_version": "OLD",
-    "year_of_birth": 1982,
-    "gendered_day_of_year_of_birth": 185,
-    "gender": "MALE",
-    "day_of_year_of_birth": 185,
-    "date_of_birth_ut": 394482600,
-    "date_of_birth": "1982-07-03",
-    "serial_no": 54,
-    "check_digit": 1,
-    "new_nic_num": "198218500541",
-    "check_digit_computed": 1,
-    "is_valid": true
-  },
-  {
-    "nic_no": "198275100203",
-    "nic_version": "NEW",
-    "year_of_birth": 1982,
-    "gendered_day_of_year_of_birth": 751,
-    "gender": "FEMALE",
-    "day_of_year_of_birth": 251,
-    "date_of_birth_ut": 400185000,
-    "date_of_birth": "1982-09-07",
-    "serial_no": 20,
-    "check_digit": 3,
-    "new_nic_num": "198275100203",
-    "check_digit_computed": 3,
-    "is_valid": true
-  },
-  {
     "nic_no": "198119105149",
     "nic_version": "NEW",
     "year_of_birth": 1981,
