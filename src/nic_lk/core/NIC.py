@@ -14,6 +14,71 @@ class NIC:
     def __init__(self, nic_no: str):
         self.nic_no = nic_no
 
+    @staticmethod
+    def new_nic_from_parts(
+        year_of_birth: int,
+        gendered_day_of_year_of_birth: int,
+        serial_no: int,
+        check_digit: int,
+    ):
+        return ''.join(
+            [
+                f'{year_of_birth:04d}',
+                f'{gendered_day_of_year_of_birth:03d}',
+                f'{serial_no:04d}',
+                f'{check_digit:01d}',
+            ]
+        )
+
+    @staticmethod
+    def old_nic_from_parts(
+        year_of_birth: int,
+        gendered_day_of_year_of_birth: int,
+        serial_no: int,
+        check_digit: int,
+    ):
+        return ''.join(
+            [
+                f'{(year_of_birth % 100):02d}',
+                f'{gendered_day_of_year_of_birth:03d}',
+                f'{serial_no:03d}',
+                f'{check_digit:01d}',
+                'V',
+            ]
+        )
+
+    @staticmethod
+    def new_from_parts(
+        year_of_birth: int,
+        gendered_day_of_year_of_birth: int,
+        serial_no: int,
+        check_digit: int,
+    ):
+        return NIC(
+            NIC.new_nic_from_parts(
+                year_of_birth,
+                gendered_day_of_year_of_birth,
+                serial_no,
+                check_digit,
+            )
+        )
+
+    @staticmethod
+    def old_from_parts(
+        year_of_birth: int,
+        gendered_day_of_year_of_birth: int,
+        serial_no: int,
+        check_digit: int,
+    ):
+        return NIC(
+            NIC.old_nic_from_parts(
+                year_of_birth,
+                gendered_day_of_year_of_birth,
+                serial_no,
+                check_digit,
+            )
+        )
+
     @cache
     def to_dict(self):
         return dict(
@@ -28,6 +93,7 @@ class NIC:
             serial_no=self.serial_no,
             check_digit=self.check_digit,
             new_nic_num=self.new_nic_num,
+            old_nic_num=self.old_nic_num,
             check_digit_computed=self.check_digit_computed,
             is_valid=self.is_valid,
         )
@@ -113,13 +179,21 @@ class NIC:
 
     @cached_property
     def new_nic_num(self) -> str:
-        if self.nic_version == NICVersion.NEW:
-            return self.nic_no
+        return self.new_nic_from_parts(
+            self.year_of_birth,
+            self.gendered_day_of_year_of_birth,
+            self.serial_no,
+            self.check_digit,
+        )
 
-        if self.nic_version == NICVersion.OLD:
-            return f'{self.year_of_birth:04d}{self.gendered_day_of_year_of_birth:03d}{self.serial_no:04d}{self.check_digit:01d}'
-
-        self.raise_invalid_nic_no()
+    @cached_property
+    def old_nic_num(self) -> str:
+        return self.old_nic_from_parts(
+            self.year_of_birth,
+            self.gendered_day_of_year_of_birth,
+            self.serial_no,
+            self.check_digit,
+        )
 
     @cached_property
     def check_digit_computed(self) -> int:
@@ -143,4 +217,11 @@ class NIC:
 
     @cached_property
     def is_valid(self) -> bool:
-        return self.check_digit == self.check_digit_computed
+        return all(
+            [
+                self.check_digit == self.check_digit_computed,
+                self.nic_no == self.new_nic_num
+                if self.nic_version == NICVersion.NEW
+                else self.nic_no == self.old_nic_num,
+            ]
+        )
